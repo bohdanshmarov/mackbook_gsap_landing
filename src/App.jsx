@@ -4,6 +4,7 @@ import ProductViewer from "./components/ProductViewer.jsx";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import {SplitText} from "gsap/SplitText";
+import Shocase from "./components/Shocase.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,7 @@ function App() {
            <NavBar />
            <Hero />
            <ProductViewer />
+           <Shocase />
        </main>
     )
 }
