@@ -1,15 +1,19 @@
 import {useMediaQuery} from "react-responsive";
 import {useGSAP} from "@gsap/react";
 import gsap from 'gsap';
+import {useRef} from 'react';
 
 const Showcase = () => {
     const isTablet = useMediaQuery({ query: '(max-width: 1024px)'});
+    const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)'});
+    const container = useRef();
 
     useGSAP(() => {
+        if (prefersReducedMotion) return;
         if(!isTablet) {
             const timeline = gsap.timeline({
                 scrollTrigger: {
-                    trigger: '#showcase',
+                    trigger: container.current,
                     start: 'top top',
                     end: 'bottom top',
                     scrub: true,
@@ -22,14 +26,14 @@ const Showcase = () => {
                     transform: 'scale(1.1)'
                 }).to('.content', { opacity: 1, y: 0, ease: 'power1.in' });
         }
-    }, [isTablet])
+    }, { scope: container, dependencies: [isTablet, prefersReducedMotion] })
 
     return (
-        <section id="showcase">
+        <section id="showcase" ref={container}>
             <div className="media">
-                <video src="/videos/game.mp4" loop muted autoPlay playsInline />
+                <video src="/videos/game.mp4" loop muted autoPlay={!prefersReducedMotion} playsInline />
                 <div className="mask">
-                    <img src="/mask-logo.svg" />
+                    <img src="/mask-logo.svg" alt="Mask logo" />
                 </div>
             </div>
 
