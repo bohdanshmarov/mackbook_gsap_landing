@@ -19,7 +19,7 @@ function StudioLights() {
                         scale={10}
                         rotation-y={Math.PI / 2}
                     />
-                </group>З
+                </group>
             </Environment>
             <spotLight
                 position={[-2, 10, 5]}
