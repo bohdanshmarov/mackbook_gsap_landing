@@ -43,4 +43,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/modeles/macbook-transformed.glb')
+useGLTF.preload('/models/macbook-transformed.glb')
